@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# This bash script runs `runRegistry` inside a screen seesion.
+
+podmanRegDir="$( dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )"
+
+exec screen $podmanRegDir/runRegistry

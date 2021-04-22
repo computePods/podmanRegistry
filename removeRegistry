@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# This bash script starts a podman registry based upon the docker registry 
+# version 2. 
+
+# See: https://docs.docker.com/registry/deploying/
+# See: https://docs.docker.com/registry/configuration/
+
+podmanRegDir="$( dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )"
+. $podmanRegDir/registryConfig
+
+mkdir -p $PODMAN_REGISTRY_DIR
+
+podman container rm podman-registry

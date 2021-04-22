@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# This bash script searches an already running podman registry (on a 
+# possibly remote machine). 
+
+# See: https://docs.docker.com/registry/deploying/
+# See: https://docs.docker.com/registry/configuration/
+
+podmanRegDir="$( dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )"
+. $podmanRegDir/registryConfig
+
+mkdir -p $PODMAN_REGISTRY_DIR
+
+podman search --tls-verify=false $PODMAN_REGISTRY_HOST:$PODMAN_REGISTRY_PORT/

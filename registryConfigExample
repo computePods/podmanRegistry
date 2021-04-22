@@ -1,0 +1,22 @@
+# This `registryConfig` shell script is sourced by all of the other podman 
+# registry scripts to provide them with the following configuration:
+
+# This is the (local) file system directory used to store the uploaded 
+# images. 
+#
+PODMAN_REGISTRY_DIR=$HOME/.local/share/containers/registry
+export PODMAN_REGISTRY_DIR
+
+# This is the DNS name of the host which runs this registry. It must be 
+# configured in your (local) DNS service *or*, alternatively in the 
+# /etc/hosts files on each machine which will access this registry. 
+#
+PODMAN_REGISTRY_HOST=podman-registry
+export PODMAN_REGISTRY_HOST
+
+# This is the port on which the registry will listen. The firewall on the 
+# machine which runs this registry *must* allow inbound traffic on this 
+# port. 
+#
+PODMAN_REGISTRY_PORT=5000
+export PODMAN_REGISTRY_PORT

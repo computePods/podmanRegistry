@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# This bash script starts a podman registry based upon the docker registry 
+# version 2. 
+
+# See: https://docs.docker.com/registry/deploying/
+# See: https://docs.docker.com/registry/configuration/
+
+podmanRegDir="$( dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )"
+. $podmanRegDir/registryConfig
+
+mkdir -p $PODMAN_REGISTRY_DIR
+
+echo ""
+echo "This registry remains connected to the current terminal"
+echo ""
+echo "Type ^C to kill this registry"
+echo ""
+
+if podman container exists podman-registry ; then
+  echo "re-starting existing container"
+  echo ""  
+
+  podman start --attach --interactive podman-registry
+
+else
+  echo "starting new container podman-registry"
+  echo ""  
+
+  podman run                                  \
+    -p $PODMAN_REGISTRY_PORT:5000             \
+    -v $PODMAN_REGISTRY_DIR:/var/lib/registry \
+    --name podman-registry                    \
+    registry:2
+
+fi
+
+echo ""  

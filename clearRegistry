@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# This bash script clears ALL existing podman images stored in the local 
+# registry. 
+
+# See: https://docs.docker.com/registry/deploying/
+# See: https://docs.docker.com/registry/configuration/
+
+podmanRegDir="$( dirname "$( readlink -f "${BASH_SOURCE[0]}" )" )"
+. $podmanRegDir/registryConfig
+
+rm -rf $PODMAN_REGISTRY_DIR
+mkdir -p $PODMAN_REGISTRY_DIR
