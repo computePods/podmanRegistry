@@ -1,0 +1,14 @@
+site_name: ComputePods Podman Registry
+
+site_url: https://computepods.github.io/podmanRegistry/
+
+repo_url: https://github.com/computePods/podmanRegistry
+
+plugins:
+  - search
+  - compute-pods
+  - awesome-pages
+  - mermaid2
+
+theme:
+  name: material
